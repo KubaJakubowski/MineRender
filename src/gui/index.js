@@ -69,7 +69,6 @@ class GuiRender extends Render {
             guiRender._controls.target.set(0, 0, 0);
             guiRender._camera.lookAt(new THREE.Vector3(0, 0, 0));
         } else {
-            console.log("[GuiRender] is attached - skipping scene init");
         }
 
         let promises = [];

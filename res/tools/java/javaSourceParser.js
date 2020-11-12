@@ -64,8 +64,7 @@ function parseFile(file) {
             model._name = modelType.name.identifier;
             model.name = modelType.name.identifier.substr("Model".length).toLowerCase();
 
-            console.log("  ");
-            console.log("=> " + model._name)
+
 
             /// Parse body
             for (let i = 0; i < modelType.bodyDeclarations.length; i++) {
@@ -84,7 +83,6 @@ function parseFile(file) {
 
                         // Field assignment etc.
                         if (statement.node === "ExpressionStatement") {
-                            console.log("ExpressionStatement")
                             let left = statement.expression.leftHandSide;
                             let right = statement.expression.rightHandSide;
 
@@ -240,7 +238,7 @@ function parseFile(file) {
             })
         } catch (err) {
             console.error(err);
-            console.log(file)
+
         }
 
 

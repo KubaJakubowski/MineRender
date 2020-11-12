@@ -352,7 +352,7 @@ export function loadModel(model, type/* block OR item */, assetRoot) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("model data:", data);
+
                         resolve(data);
                     })
             } else {// model name -> use local data

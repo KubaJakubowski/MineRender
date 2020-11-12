@@ -28,8 +28,6 @@ ModelConverter.prototype.structureToModels = function (structure, cb) {
             }
 
             if (!PRODUCTION) {
-                console.log("NBT Data:")
-                console.log(data);
             }
 
             parseStructureData(data).then((data) => {
@@ -58,15 +56,13 @@ ModelConverter.prototype.schematicToModels = function (schematic, cb) {
             }
 
             if (!PRODUCTION) {
-                console.log("NBT Data:")
-                console.log(data);
             }
 
             let xhr = new XMLHttpRequest();
             xhr.open('GET', "https://minerender.org/res/idsToNames.json", true);
             xhr.onloadend = function () {
                 if (xhr.status === 200) {
-                    console.log(xhr.response || xhr.responseText);
+
 
                     let idsToNames = JSON.parse(xhr.response || xhr.responseText);
                     parseSchematicData(data, idsToNames).then(data => cb(data));

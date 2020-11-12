@@ -99,12 +99,12 @@ class SkinRender extends Render {
                     skinRender.element.dispatchEvent(new CustomEvent("skinRender", {detail: {playerModel: skinRender.playerModel}}));
                 });
             } else {
-                console.log("[SkinRender] is attached - skipping scene init");
+
             }
 
             let playerModel = createPlayerModel(skinTexture, capeTexture, textureVersion, slim, texture._capeType ? texture._capeType : texture.optifine ? "optifine" : "minecraft");
             skinRender.addToScene(playerModel);
-            // console.log(playerModel);
+
             skinRender.playerModel = playerModel;
 
             if (typeof cb === "function") cb();
@@ -193,7 +193,6 @@ class SkinRender extends Render {
                 // update destination canvas
                 opaqueContext.putImageData(imageData, 0, 0);
 
-                console.log(opaqueCanvas.toDataURL())
 
                 skinTexture = new THREE.CanvasTexture(opaqueCanvas);
             }
@@ -206,14 +205,14 @@ class SkinRender extends Render {
             console.warn("Skin Image Error")
             console.warn(e)
         }
-        console.log("Has Cape: " + hasCape)
+        
         if (hasCape) {
             capeTexture.image = skinRender._capeImage;
             skinRender._capeImage.onload = function () {
                 if (!skinRender._capeImage) return;
 
                 capeLoaded = true;
-                console.log("Cape Image Loaded");
+
 
                 if (capeLoaded && skinLoaded) {
                     if (!renderStarted) imagesLoaded(skinTexture, capeTexture);
@@ -241,7 +240,6 @@ class SkinRender extends Render {
             } else if (texture.length <= 16) {// Probably a Minecraft username
                 getJSON("https://minerender.org/nameToUuid.php?name=" + texture, function (err, data) {
                     if (err) return console.log(err);
-                    console.log(data);
                     skinRender._skinImage.src = "https://crafatar.com/skins/" + (data.id ? data.id : texture);
                 });
             } else if (texture.length <= 36) {// Probably player UUID
@@ -419,8 +417,6 @@ function createCube(texture, width, height, depth, textures, slim, name, transpa
 
 
 function createPlayerModel(skinTexture, capeTexture, v, slim, capeType) {
-    console.log("capeType: " + capeType);
-
     let headGroup = new THREE.Object3D();
     headGroup.name = "headGroup";
     headGroup.position.x = 0;
@@ -583,7 +579,6 @@ function createPlayerModel(skinTexture, capeTexture, v, slim, capeType) {
     playerGroup.add(rightLegGroup);
 
     if (capeTexture) {
-        console.log(texturePositions);
         let capeTextureCoordinates = texturePositions.capeRelative;
         if (capeType === "optifine") {
             capeTextureCoordinates = texturePositions.capeOptifineRelative;
@@ -593,7 +588,6 @@ function createPlayerModel(skinTexture, capeTexture, v, slim, capeType) {
         }
         capeTextureCoordinates = JSON.parse(JSON.stringify(capeTextureCoordinates)); // bad clone to keep the below scaling from affecting everything
 
-        console.log(capeTextureCoordinates);
 
         // Multiply coordinates by image dimensions
         for (let cord in capeTextureCoordinates) {
@@ -603,7 +597,6 @@ function createPlayerModel(skinTexture, capeTexture, v, slim, capeType) {
             capeTextureCoordinates[cord].h *= capeTexture.image.height;
         }
 
-        console.log(capeTextureCoordinates);
 
         let capeGroup = new THREE.Object3D();
         capeGroup.name = "capeGroup";

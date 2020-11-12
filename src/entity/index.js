@@ -55,14 +55,13 @@ class EntityRender extends Render {
                 entityRender.element.dispatchEvent(new CustomEvent("entityRender", {detail: {entities: entityRender.entities}}));
             });
         } else {
-            console.log("[EntityRender] is attached - skipping scene init");
+
         }
 
         let promises = [];
         for (let i = 0; i < entities.length; i++) {
             promises.push(new Promise((resolve) => {
                 let entity = entities[i];
-                console.log(entity)
 
                 if (typeof entity !== "object") {
                     entity = {
@@ -77,8 +76,7 @@ class EntityRender extends Render {
                 getEntityModel(entity.model)
                     .then(modelData => mergeParents(modelData))
                     .then((mergedModel) => {
-                        console.log("Merged:")
-                        console.log(mergedModel)
+
                         loadTextureAsBase64(entityRender.options.assetRoot, "minecraft", "/entity/", entity.texture).then((texture) => {
                             new THREE.TextureLoader().load(texture, function (textureData) {
                                 textureData.magFilter = THREE.NearestFilter;
@@ -110,7 +108,7 @@ class EntityRender extends Render {
 }
 
 function renderEntity(entityRender, modelData, texture, textureScale) {
-    console.log(modelData)
+
     return new Promise((resolve) => {
         let entityGroup = new THREE.Object3D();
         for (let g in modelData.groups) {
@@ -299,7 +297,7 @@ let mergeParents = function (model) {
     });
 };
 let mergeParents_ = function (model, stack, resolve, reject) {
-    console.log(stack)
+
 
     stack.push(model);
 
@@ -307,9 +305,9 @@ let mergeParents_ = function (model, stack, resolve, reject) {
         stack.reverse();
         let merged = {};
         for (let i = 0; i < stack.length; i++) {
-            console.log(i)
+
             merged = merge(merged, stack[i], {arrayMerge: overwriteMerge});
-            console.log(merged)
+
         }
 
         resolve(merged);

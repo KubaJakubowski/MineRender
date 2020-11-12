@@ -118,7 +118,7 @@ class ModelRender extends Render {
                 modelRender.element.dispatchEvent(new CustomEvent("modelRender", {detail: {models: modelRender.models}}));
             });
         } else {
-            console.log("[ModelRender] is attached - skipping scene init");
+
         }
 
         let parsedModelList = [];
@@ -139,8 +139,7 @@ class ModelRender extends Render {
 
 
 function parseModels(modelRender, models, parsedModelList) {
-    console.time("parseModels");
-    console.log("Parsing Models...");
+
     let parsePromises = [];
     for (let i = 0; i < models.length; i++) {
         let model = models[i];
@@ -179,7 +178,7 @@ function loadAndMergeModels(modelRender, parsedModelList) {
 
     let jsonPromises = [];
 
-    console.log("Loading Model JSON data & merging...");
+
     let uniqueModels = {};
     for (let i = 0; i < parsedModelList.length; i++) {
         let cacheKey = modelCacheKey(parsedModelList[i]);
@@ -229,7 +228,6 @@ function loadModelTextures(modelRender, parsedModelList) {
 
     let texturePromises = [];
 
-    console.log("Loading Textures...");
     let uniqueModels = {};
     for (let i = 0; i < parsedModelList.length; i++) {
         uniqueModels[modelCacheKey(parsedModelList[i])] = parsedModelList[i];
@@ -291,7 +289,7 @@ function doModelRender(modelRender, parsedModelList) {
     console.timeEnd("loadModelTextures");
     console.time("doModelRender");
 
-    console.log("Rendering Models...");
+
 
     let renderPromises = [];
 
@@ -932,7 +930,7 @@ let createCube = function (width, height, depth, name, faces, fallbackFaces, tex
 
                             let parts = Math.floor(canvas.height / canvas.width);
 
-                            console.log("Generating animated texture...");
+
 
                             let promises1 = [];
                             for (let i = 0; i < parts; i++) {

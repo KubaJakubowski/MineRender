@@ -48,7 +48,6 @@ class CombinedRender extends Render {
  * @ignore
  */
 function attachTo(self, target) {
-    console.log("Attaching " + self.constructor.name + " to " + target.constructor.name);
 
     self._scene = target._scene;
     self._camera = target._camera;
