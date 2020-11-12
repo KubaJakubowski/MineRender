@@ -147,12 +147,7 @@ export default class Render {
     initScene(renderCb, doNotAnimate) {
         let renderObj = this;
 
-        console.log(" ");
-        console.log('%c       ', 'font-size: 100px; background: url(https://minerender.org/img/minerender.svg) no-repeat;');
-        console.log("MineRender/" + (renderObj.renderType || renderObj.constructor.name) + "/" + VERSION);
-        console.log((PRODUCTION ? "PRODUCTION" : "DEVELOPMENT") + " build");
-        console.log("Built @ " + BUILD_DATE);
-        console.log(" ");
+
 
         if (renderObj.options.sendStats) {
             // Send stats

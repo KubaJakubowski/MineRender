@@ -78,7 +78,6 @@ class SkinRender extends Render {
             } else {
                 console.error("Couldn't detect texture version. Invalid dimensions: " + skinTexture.image.width + "x" + skinTexture.image.height)
             }
-            console.log("Skin Texture Version: " + textureVersion)
 
             // To keep the pixelated texture
             skinTexture.magFilter = THREE.NearestFilter;
@@ -103,7 +102,6 @@ class SkinRender extends Render {
                 console.log("[SkinRender] is attached - skipping scene init");
             }
 
-            console.log("Slim: " + slim)
             let playerModel = createPlayerModel(skinTexture, capeTexture, textureVersion, slim, texture._capeType ? texture._capeType : texture.optifine ? "optifine" : "minecraft");
             skinRender.addToScene(playerModel);
             // console.log(playerModel);
@@ -128,7 +126,6 @@ class SkinRender extends Render {
             if (!skinRender._skinImage) return;
 
             skinLoaded = true;
-            console.log("Skin Image Loaded");
 
             if (texture.slim === undefined) {
                 if (skinRender._skinImage.height !== 32) {
@@ -139,8 +136,6 @@ class SkinRender extends Render {
                     detectCanvas.width = skinRender._skinImage.width;
                     detectCanvas.height = skinRender._skinImage.height;
                     detectCtx.drawImage(skinRender._skinImage, 0, 0);
-
-                    console.log("Slim Detection:")
 
                     // Check the 2 columns that should be transparent on slim skins
                     let px1 = detectCtx.getImageData(46, 52, 1, 12).data;
@@ -156,7 +151,6 @@ class SkinRender extends Render {
                             break;
                         }
                     }
-                    console.log(allTransparent)
 
                     if (allTransparent) slim = true;
                 }
