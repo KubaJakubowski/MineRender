@@ -7,5 +7,6 @@
 # MineRender
 ## Quick, Easy, Interactive 3D/2D Renders of Minecraft
 
-
+# MineRender fork with disabled logging and better typescript intergration 
+## (due to no options in config)
 [MineRender.org](https://minerender.org/)
