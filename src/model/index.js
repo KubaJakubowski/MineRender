@@ -1,7 +1,6 @@
 import * as THREE from "three";
 
 require("three-instanced-mesh")(THREE);
-import * as $ from 'jquery';
 import merge from 'deepmerge'
 import Render, { defaultOptions, deepDisposeMesh, mergeCubeMeshes } from "../renderBase";
 import { loadTextureAsBase64, scaleUv, DEFAULT_ROOT, loadJsonFromPath, loadBlockState, loadTextureMeta } from "../functions";

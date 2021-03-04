@@ -276,15 +276,26 @@ let applyCubeTextureToGeometry = function (geometry, texture, uv, mirror, textur
 
 
 function getEntityModel(entity) {
-    return new Promise((resolve, reject) => {
-        $.ajax("https://minerender.org/res/models/entities/" + entity + ".json")
-            .done((data) => {
+    return new Promise((resolve, reject) =>{
+        fetch("https://minerender.org/res/models/entities/" + entity + ".json")
+            .then((data) => {
                 resolve(data);
             })
-            .fail(() => {
+            .catch(() => {
                 reject();
             })
+
+
     })
+    // return new Promise((resolve, reject) => {
+    //     $.ajax("https://minerender.org/res/models/entities/" + entity + ".json")
+    //         .done((data) => {
+    //             resolve(data);
+    //         })
+    //         .fail(() => {
+    //             reject();
+    //         })
+    // })
 }
 
 const overwriteMerge = (destinationArray, sourceArray, options) => {

@@ -3,7 +3,6 @@ import { SSAARenderPass, OBJExporter, GLTFExporter, PLYExporter } from "threejs-
 import EffectComposer, { ShaderPass, CopyShader } from "@johh/three-effectcomposer";
 import * as THREE from "three";
 import OnScreen from "onscreen";
-import * as $ from "jquery";
 import { trimCanvas, DEFAULT_ROOT } from "./functions";
 
 /**
@@ -67,7 +66,10 @@ export default class Render {
          * DOM Element to attach the renderer to
          * @type {HTMLElement}
          */
-        this.element = element || document.body;
+        if(!element){
+            throw new Error("Element not defined");
+        }
+        this.element = element; // || document.body;
         /**
          * Combined options
          * @type {{} & defaultOptions & defOptions & options}
@@ -164,16 +166,6 @@ export default class Render {
             }catch (e) {
                 console.warn("Failed to get hostname");
             }
-
-            $.post({
-                url: "https://minerender.org/stats.php",
-                data: {
-                    action: "init",
-                    type: renderObj.renderType,
-                    host: hostname,
-                    source: (iframe ? "iframe" : "javascript")
-                }
-            });
         }
 
         // Scene INIT

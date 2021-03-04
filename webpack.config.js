@@ -17,7 +17,6 @@ let baseConfigFull = {
         filename: 'OUT_NAME.js'
     },
     externals: {
-        jquery: 'jQuery',
         three: "THREE"
     },
     plugins: [
@@ -42,7 +41,6 @@ let baseConfigMin = {
         filename: 'OUT_NAME.min.js'
     },
     externals: {
-        jquery: 'jQuery',
         three: "THREE"
     },
     plugins: [
